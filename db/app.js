@@ -1,7 +1,7 @@
 const express  = require('express');
 const app = express()
 const port = 3000;
-const LoggedInUsers = require("./loggedin-users");
+const {LoggedInUsers, User} = require("./loggedin-users");
 
 app.use(express.urlencoded({
     extended: true
@@ -30,6 +30,18 @@ app.post('/login', (req, res) => {
     }
     });
     
+})
+
+app.post('/create-user', (req, res)=> {
+
+        const body = req.body;
+        console.log(body);
+        newUser = new User(body['fName'], body['lName'], body['password'], body['username'], body['userId'])
+        console.table(newUser);
+
+        const result = users.newUser(newUser);
+        console.table(result);
+
 })
 
 app.listen(3000, ()=> {
