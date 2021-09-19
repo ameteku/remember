@@ -1,20 +1,18 @@
 const { json } = require('express');
-const admin = require('firebase-admin');
-
-const serviceAccount = require('/Users/mike/remember/db/remember-dbe0a-ff71acd7d40a.json');
+const db = require("./db");
 const collectionPath = 'users';
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
 
-const db = admin.firestore();
 
-function User(first, last, username, password) {
+var newUserId = 0;
+function User(first, last, username, email, password) {
     return {
         "fName": first,
         "lName": last,
+        "email" : email,
+        "userId" : newUserId++,
         "username": username,
-        "password": password
+        "password": password,
+        "events" : []
     }
 }
 
@@ -53,8 +51,10 @@ class LoggedInUsers {
         if (user != null) {
             const newUser = await db.collection(collectionPath).add(user)
             console.log("New ref" + newUser.id)
+            return user;
         }
 
+        return null;
     }
 
     removeUser(userId) {

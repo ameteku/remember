@@ -8,18 +8,4 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-const docRef = db.collection('users').doc('alovelace');
-
-async function test() {
-    await docRef.set({
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815
-      });
-      const snapshot = await db.collection("users").get();
-      snapshot.forEach((doc)=> {
-          console.log(doc.id, '=>', doc.data());
-      })
-}
-
-test();
+module.exports = db;
