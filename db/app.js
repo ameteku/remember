@@ -98,7 +98,19 @@ if(tempUser != null) {
         }
     })
 }
+})
 
+
+app.post('/homepage/myevents', (req,res)=> {
+    const userId = req.body["userId"];
+    const tempUser = users.getUser(userId);
+
+    if(tempUser == null) res.send("error");
+
+    eventGetter.getEvents(tempUser["events"]).then((result) => {
+        console.log("result is" + result);
+        res.send(JSON.stringify(result));
+    });
 })
 
 app.listen(3000, () => {
