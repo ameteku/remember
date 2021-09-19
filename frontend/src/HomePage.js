@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "./Navbar";
 import './HomePage.css';
 
 function HomePage(){
@@ -52,6 +53,7 @@ function HomePage(){
 
     return (
         <div>
+        <Navbar/>
             <div className='feed'>
                 <div className='feedButtonRow'> 
                     <button id="myEvent" className="activeFeedButton" onClick={switchTab}>My Events</button>
