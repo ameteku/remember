@@ -5,6 +5,7 @@ import Home from "./Landing";
 import Login from "./Login";
 import Register from './Register';
 import CreateEvent from './CreateEvent';
+import JoinEvent from './JoinEvent';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/create-event" component={CreateEvent}/>
+      <Route exact path="/join-event" component={JoinEvent}/>
     </div>
   );
 }
