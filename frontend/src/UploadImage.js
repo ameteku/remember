@@ -49,6 +49,7 @@ function UploadImage(){
         <input
             type="file"
             name="myImage"
+            className="selectButton"
             onChange={(event) => {
             setSelectedImage(event.target.files[0]);
             changeEvent(event);
