@@ -12,5 +12,16 @@
 }
 
 .selectButton {
-    margin: auto;
+    margin: 10px 10px;
+    width:100%;
+}
+
+.uploadButton {
+    width:200px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: teal;
+    border-style: none;
 }

@@ -12,13 +12,14 @@ function UploadImage(){
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = () => {
-            changeBase64(reader.result)
+            changeBase64(reader.result);
+            console.log(basestring.slice(22));
+            let options = {
+            apiKey: api_key,
+            base64string:reader.result.slice(22)}
+            imgbbUploader(options).then((response) => console.log(response)).catch((error) => console.error(error));
         }
-        console.log(basestring.slice(22));
-        const options = {
-        apiKey: api_key,
-        base64string:basestring.slice(22)}
-        imgbbUploader(options).then((response) => console.log(response)).catch((error) => console.error(error));
+        
         reader.onerror = function (error) {
           console.log('Error: ', error);
         }
@@ -34,10 +35,10 @@ function UploadImage(){
                 <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
                 <br />
                 <div>
-                    <button onClick={()=>setSelectedImage(null)}>Remove</button>
+                    <button className="uploadButton" onClick={()=>setSelectedImage(null)}>Remove</button>
                 </div>
                 <div>
-                    <button onClick={()=>uploadBase64(imageEvent)}>Submit</button>
+                    <button className="uploadButton" onClick={()=>uploadBase64(imageEvent)}>Submit</button>
                 </div>
             </div>
             
@@ -53,6 +54,7 @@ function UploadImage(){
             onChange={(event) => {
             setSelectedImage(event.target.files[0]);
             changeEvent(event);
+            console.log(event);
             }}
         />
         </div>
