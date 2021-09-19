@@ -26,7 +26,7 @@ function HomePage(){
                 console.log(data);
                 updateEvents(data);
             });
-        }, []);
+        }, []);   
     function mapEvents(event){
         return <Event name={event.name} />
     }
