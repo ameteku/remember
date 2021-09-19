@@ -73,6 +73,29 @@ app.post('/homepage/create-event', (req, res) => {
     });
 });
 
+
+app.post('/homepage/join-event', (req, res)=> {
+const body = req.body;
+const userId = body['userId'];
+
+const tempUser = users.getUser(userId);
+
+if(tempUser != null) {
+    const eventId = body['evnetId'];
+    const passcode = body['passcode'];
+
+    eventGetter.joinEvent(eventId, passcode).then((result)=> {
+        if(result ) {
+            
+        }
+    })
+}
+
+
+
+
+})
+
 app.listen(3000, () => {
     console.log("hello");
 })
