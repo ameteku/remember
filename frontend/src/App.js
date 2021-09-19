@@ -4,6 +4,7 @@ import {Route} from "react-router-dom";
 import Home from "./Landing";
 import Login from "./Login";
 import Register from './Register';
+import HomePage from './HomePage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route exact path="/" component={Home}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
+      <Route exact path="/home" component={HomePage}/>
     </div>
   );
 }
