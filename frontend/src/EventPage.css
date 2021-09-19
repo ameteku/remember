@@ -1,0 +1,7 @@
+.everything{
+    margin:auto;
+    width:80%;
+    background-color: teal;
+    color:white;
+    flex-direction: column;
+}

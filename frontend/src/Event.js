@@ -7,7 +7,7 @@ function Event(props){
         <div className="eventBlock">
             <Link style={{ textDecoration: 'none' }} 
             to={{ 
-            pathname: "/eventPage",props}}>{props.name}</Link>
+            pathname: "/EventPage",props}}>{props.name}</Link>
         </div>
     )
 }

@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import {Route} from "react-router-dom";
 import Home from "./Landing";
 import Login from "./Login";
 import Register from './Register';
 import HomePage from './HomePage';
+import EventPage from './EventPage';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
       <Route exact path="/login" component={Login}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/home" component={HomePage}/>
+      <Route exact path="/eventpage" component={EventPage}/>
     </div>
   );
 }
