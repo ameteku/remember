@@ -2,9 +2,6 @@
     margin:auto;
     width:50%;
     border-radius: 5px;
-    border: 1px;
-    border-style: solid;
-    border-color: #808080;
     margin-top: 100px;
     padding-top: 50px;
     padding: 50px 10px 50px 10px;
@@ -53,4 +50,9 @@
     color: white;
     background-color:teal;
     border-style: none;
+}
+
+.eventsList {
+    margin: 50px auto;
+    width: 55%;
 }

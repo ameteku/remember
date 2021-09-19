@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Event from "./Event";
 import './HomePage.css';
 
 function HomePage(){
     const [currentTab, updateTab] = React.useState(0);
-    const [events, updateEvents] = React.useState([]);
+    const [events, updateEvents] = React.useState([{name:"Soup kitchen"},{name:"Wizkid concert"},{name:"Graduation"}]);
     React.useEffect(() => {
         async function getData(url) {
             const response = await fetch(url, {
@@ -27,7 +28,7 @@ function HomePage(){
             });
         }, []);
     function mapEvents(event){
-
+        return <Event name={event.name} />
     }
 
 
@@ -64,9 +65,7 @@ function HomePage(){
                     <button className="btn-block stackBtn">Join Event</button>
                 </div>
                 <div className="eventsList">
-                    <ol>
-                       {events.map(mapEvents)} 
-                    </ol>
+                    {events.map(mapEvents)} 
                 </div>
             </div>
         </div>

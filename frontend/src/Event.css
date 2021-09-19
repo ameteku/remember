@@ -1,0 +1,12 @@
+.eventBlock{
+    background-color: white;
+    color:lightseagreen;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: lightseagreen;
+    color:teal;
+    height: 50px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
