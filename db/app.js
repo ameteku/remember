@@ -1,20 +1,20 @@
-const express  = require('express');
-const EventsGetter = require('./get-events');
+const express = require('express');
+const {EventsGetter,  Event}= require('./get-events');
 const app = express()
 const port = 3000;
-const {LoggedInUsers, User} = require("./loggedin-users");
+const { LoggedInUsers, User } = require("./loggedin-users");
 
 
 
 
 app.use(express.urlencoded({
     extended: true
-  }));
+}));
 
 const users = new LoggedInUsers();
 const eventGetter = new EventsGetter();
 
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     console.log("Running");
     res.send("");
 
@@ -24,42 +24,55 @@ app.post('/login', (req, res) => {
 
     const body = req.body;
     console.log(body);
-    users.login(body['userName'], body['password']).then((userInfo)=> {
-        console.log(userInfo +  "is user")
-    if(userInfo != null) {
-        res.send(JSON.stringify(userInfo));
-    }
+    users.login(body['userName'], body['password']).then((userInfo) => {
+        console.log(userInfo + "is user")
+        if (userInfo != null) {
+            res.send(JSON.stringify(userInfo));
+        }
 
-    else {
-        res.send("error");
-    }
+        else {
+            res.send("error");
+        }
     });
-    
-})
-
-app.post('/create-user', (req, res)=> {
-
-        const body = req.body;
-        console.log(body);
-        newUser = new User(body['fName'], body['lName'], body['password'], body['username'], body['userId'])
-        console.table(newUser);
-
-        users.newUser(newUser).then((result)=> {
-            console.table(result);
-
-            res.send(result);
-        });
 
 })
 
-app.get('/homepage/global-events', (req, res)=> {
-   eventGetter.getGlobalEvents().then((tempEvents)=> {
-    res.send(tempEvents);
-   });
+app.post('/create-user', (req, res) => {
 
- 
+    const body = req.body;
+    console.log(body);
+    newUser = new User(body['fName'], body['lName'], body['password'], body['username'], body['userId'])
+    console.table(newUser);
+
+    users.newUser(newUser).then((result) => {
+        console.table(result);
+
+        res.send(result);
+    });
+
 })
 
-app.listen(3000, ()=> {
+app.get('/homepage/global-events', (req, res) => {
+    eventGetter.getGlobalEvents().then((tempEvents) => {
+        res.send(tempEvents);
+    });
+
+
+})
+
+app.post('/homepage/create-event', (req, res) => {
+    const body = req.body;
+    console.log(body);
+    newEvent = new Event(body["name"], body['creationDate'], body["description"], body["isPrivate"], body["passcode"], body["creatorId"]);
+    console.table(newEvent);
+
+    eventGetter.newEvent(newEvent).then((result) => {
+        console.table(result);
+
+        res.send(result);
+    });
+});
+
+app.listen(3000, () => {
     console.log("hello");
 })
