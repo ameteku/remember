@@ -1,6 +1,7 @@
 import React from "react";
 import "./EventPage.css";
 import Gallery from 'react-grid-gallery';
+import { useHistory } from "react-router";
 
 
 function EventPage(props){
@@ -29,7 +30,7 @@ function EventPage(props){
     return (
         <div className="everything">
             <div className="goBack">
-                <button>Go Back</button>
+                <button onClick={()=>(props.history.goBack())}>Go Back</button>
             </div>
             <div>
                 <h1>Meet Billie</h1>
