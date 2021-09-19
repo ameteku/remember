@@ -12,7 +12,8 @@ function User(first, last, username, email, password) {
         "userId" : newUserId++,
         "username": username,
         "password": password,
-        "events" : []
+        "events" : [],
+        
     }
 }
 
@@ -37,7 +38,11 @@ class LoggedInUsers {
         if (snapshot.docs.length >= 1) {
             console.log("The document exists");
             const user = snapshot.docs[0].data();
+            console.log(user)
             this.users[user['userId']] = user;
+
+            console.log("User table is:")
+            console.table(this.users)
             return this.users[user['userId']];
 
         }
@@ -46,11 +51,25 @@ class LoggedInUsers {
     }
 
 
+    async updateUser(user) {
+        console.log(user);
+        if (user != null) {
+            await db.collection(collectionPath).doc(user['userId']).update(user);
+            this.users[user['userId']]   = user;
+            return user;
+        }
+
+        return null;
+    }
+
     async newUser(user) {
         console.log(user);
         if (user != null) {
             const newUser = await db.collection(collectionPath).add(user)
+            
             console.log("New ref" + newUser.id)
+            user['userId'] =newUser.id;
+            this.users[user['userId']] = user;
             return user;
         }
 
@@ -58,16 +77,17 @@ class LoggedInUsers {
     }
 
     removeUser(userId) {
-        if (users[users.id] != null) {
-            users[users.id] = null;
+        if (this.users[users.id] != null) {
+            this.users[users.id] = null;
         }
     }
 
     getUser(userId) {
-        if (users[users.id] != null) {
-            return users[users.id];
+        if (this.users[userId] != null) {
+            return this.users[userId];
         }
     }
+    
 
 }
 

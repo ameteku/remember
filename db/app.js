@@ -79,20 +79,25 @@ const body = req.body;
 const userId = body['userId'];
 
 const tempUser = users.getUser(userId);
+console.log(tempUser + "is user");
+if(tempUser == null) res.send("error");
 
 if(tempUser != null) {
-    const eventId = body['evnetId'];
+    const eventId = body['eventId'];
     const passcode = body['passcode'];
+    console.log(eventId + " " + passcode)
 
     eventGetter.joinEvent(eventId, passcode).then((result)=> {
         if(result ) {
-            
+            tempUser['events'].push(eventId);
+            users.updateUser(tempUser).then((userResult)=> {
+                console.log("result is")
+                console.table(userResult);
+                res.send(JSON.stringify(userResult));
+            });
         }
     })
 }
-
-
-
 
 })
 
