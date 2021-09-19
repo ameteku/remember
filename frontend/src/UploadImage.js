@@ -27,30 +27,34 @@ function UploadImage(){
 
     // Upload from stack overflow: https://stackoverflow.com/questions/43692479/how-to-upload-an-image-in-react-js
     <div>
-      <h1>Upload your Image</h1>
-      {selectedImage && (
-        <div>
-        <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+        <div className="select">
+        <h1>Select File</h1>
+        {selectedImage && (
+            <div>
+                <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                <br />
+                <div>
+                    <button onClick={()=>setSelectedImage(null)}>Remove</button>
+                </div>
+                <div>
+                    <button onClick={()=>uploadBase64(imageEvent)}>Submit</button>
+                </div>
+            </div>
+            
+            
+        )}
         <br />
-        <button onClick={()=>setSelectedImage(null)}>Remove</button>
-        <button onClick={()=>{
-            uploadBase64(imageEvent);
-
-            }}>Submit</button>
+        
+        <br /> 
+        <input
+            type="file"
+            name="myImage"
+            onChange={(event) => {
+            setSelectedImage(event.target.files[0]);
+            changeEvent(event);
+            }}
+        />
         </div>
-      )}
-      <br />
-     
-      <br /> 
-      <input
-        type="file"
-        name="myImage"
-        onChange={(event) => {
-          console.log(api_key);
-          setSelectedImage(event.target.files[0]);
-          changeEvent(event);
-        }}
-      />
     </div>
   );
 };
