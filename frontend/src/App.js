@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from './Register';
 import HomePage from './HomePage';
 import EventPage from './EventPage';
+import UploadImage from './UploadImage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/register" component={Register}/>
       <Route exact path="/home" component={HomePage}/>
       <Route exact path="/eventpage" component={EventPage}/>
+      <Route exact path="/uploadimage" component={UploadImage}/>
     </div>
   );
 }

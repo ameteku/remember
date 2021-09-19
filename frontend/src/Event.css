@@ -10,3 +10,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.imagePreview {
+    width: 100px;
+    height:700px
+}
