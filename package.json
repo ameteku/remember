@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@azure/cosmos": "^3.14.1",
+    "babel": "^6.23.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.11.1"
+  }
+}
